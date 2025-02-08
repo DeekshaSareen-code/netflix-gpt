@@ -82,6 +82,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - useRef hook
 - firebase setup
 - deploying app to production
+- create signup user account
+- Implement sign in user API
+- created Redux store with userSlice
+- Implemented Sign out
+- Update Profile
+- Fetch Movies from TMDB movies
 
 ## Features
 

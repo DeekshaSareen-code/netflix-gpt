@@ -3,15 +3,20 @@ import React, { useRef } from "react";
 import Header from "./Header";
 import { useState } from "react";
 import checkValidData from "../utils/validate";
+import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -40,7 +45,23 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("User signed up successfully!", user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://occ-0-171-90.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABYTJSJ0e98RxCgAE4x6tsnkLrFoWNWQh3rZl-80iwlihbPBgBuSV4pF8FnZjDz8Ynb1xVSyqA3LlVE0oxAIu079j-eqCa94.png?r=ce4",
+          });
+        })
+        .then(() => {
+          const { uid, email, displayName, photoURL } = auth.currentUser;
+          dispatch(
+            addUser({
+              uid: uid,
+              email: email,
+              displayName: displayName,
+              photoURL: photoURL,
+            })
+          );
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -55,6 +76,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           alert("Signed in successfully");
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.errorCode + "-" + error.errorMessage;
@@ -62,8 +84,6 @@ const Login = () => {
           setErrorMessage(errorCode + "-" + errorMessage);
         });
     }
-
-    alert("Form submitted successfully");
   };
   return (
     <div className="">
@@ -76,7 +96,7 @@ const Login = () => {
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="rounded-md w-4/12 absolute p-12 my-36 bg-black mx-auto right-0 left-0 text-white bg-opacity-80"
+        className="rounded-md w-3/12 absolute p-12 my-36 bg-black mx-auto right-0 left-0 text-white bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4 ">
           {isSignInForm ? "Sign In" : "Sign Up"}
