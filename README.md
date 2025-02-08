@@ -74,9 +74,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Create React APP
 - Configure Tailwind css
 - Header
+- Routing
 - Body
 - Sign in Form
 - Sign up form
+- Form Validation
+- useRef hook
+- firebase setup
+- deploying app to production
 
 ## Features
 
