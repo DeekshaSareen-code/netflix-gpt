@@ -88,6 +88,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Implemented Sign out
 - Update Profile
 - Fetch Movies from TMDB movies
+- BugFix - If the user is not logged in Redirect /browse to login page
+- Unsubscribe from auth callback when component is destroyed
+- Add hardcoded values to the constants file
+- Register to TMDB and setup your API key
+- Use the fetch api for nowplaying movies
 
 ## Features
 

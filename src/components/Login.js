@@ -3,7 +3,6 @@ import React, { useRef } from "react";
 import Header from "./Header";
 import { useState } from "react";
 import checkValidData from "../utils/validate";
-import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -12,10 +11,10 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR, BACKGROUND } from "../utils/constant";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useRef(null);
   const password = useRef(null);
@@ -47,8 +46,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://occ-0-171-90.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABYTJSJ0e98RxCgAE4x6tsnkLrFoWNWQh3rZl-80iwlihbPBgBuSV4pF8FnZjDz8Ynb1xVSyqA3LlVE0oxAIu079j-eqCa94.png?r=ce4",
+            photoURL: USER_AVATAR,
           });
         })
         .then(() => {
@@ -61,7 +59,6 @@ const Login = () => {
               photoURL: photoURL,
             })
           );
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -76,7 +73,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           alert("Signed in successfully");
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.errorCode + "-" + error.errorMessage;
@@ -89,10 +85,7 @@ const Login = () => {
     <div className="">
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/638e9299-0637-42d1-ba39-54ade4cf2bf6/web/CA-en-20250203-TRIFECTA-perspective_219648ef-70c0-4366-bec5-f9dae73ccf74_large.jpg"
-          alt="background"
-        />
+        <img src={BACKGROUND} alt="background" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
