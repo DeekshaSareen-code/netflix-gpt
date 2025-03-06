@@ -102,8 +102,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - TMDB image CDN url
 - usePopularMovies custom hook
 - GPT search feature
--
--
+- Multi language feature
+- GPT APIs
 
 ## Features
 
