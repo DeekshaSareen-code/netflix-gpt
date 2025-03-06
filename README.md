@@ -93,6 +93,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Add hardcoded values to the constants file
 - Register to TMDB and setup your API key
 - Use the fetch api for nowplaying movies
+- Fetch Data for movie trailer
+- Fetch Data for movies
+- Embed with trailer and make it mute and autoplay
+- Build secondary component
+- Build Movie List
+- Build Movie Card
+- TMDB image CDN url
+- usePopularMovies custom hook
+- GPT search feature
+-
+-
 
 ## Features
 
